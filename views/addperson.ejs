@@ -1,0 +1,95 @@
+<%- include('header.ejs') -%>
+<div class="container">
+  <div class="row mt-5">
+      <div class="col-md-12 m-auto">
+        <div class="card card-body">
+          <h1 class="text-center mb-3">
+            <i class="fas fa-user-plus"></i> Add person
+          </h1>
+          <%-include('messages')-%>
+          <form method="post" action="/addperson" enctype="multipart/form-data">
+              <div class="form-row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Name" name="name">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Last name">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Home Address" name="homeaddress">
+                </div>
+               
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Work Address" name="workaddress">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="work" name="work">
+                </div>
+                
+                <div class="col">
+                  <input type="number" class="form-control" placeholder="Phone Number(1)"name="phone1">
+                </div>   
+
+                </div>
+                <br>
+                <div class="form-row">
+                  <div class="col">
+                    <input type="number" class="form-control" placeholder="Phone Number(2)" name="phone2">
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control" placeholder="Phone Number(3)" name="phone3">
+                  </div>
+                  <div class="col">
+                      <input type="text" class="form-control" placeholder="witness(1)" name="witness1">
+                    </div>
+                    
+                    
+                </div>
+                <br>
+                <div class="form-row" >
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="witness(2)" name="witness2">
+                </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="witness(3)" name="witness3">
+                </div>
+                <div class="col">
+                  <input type="number" class="form-control" placeholder="Adhar Card"name="adharcard">
+                </div>
+                  
+                  
+                   
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="cheque" name="cheque" >
+                  </div>
+                  <div class="col">
+                  <label for="personphoto" >Add documents and photos</label>
+                    <br>                
+                    <input type="file" placeholder="person photo" name="personphoto" multiple>
+                  </div>
+                   
+                  <div class="col">
+                  
+                    
+                    <input type="text" class="form-control" placeholder="Location" name="location">
+
+                  </div>
+                </div>
+                <br>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-block">submit</button>
+                </div>
+                </div>
+            </form>
+          <!-- <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p> -->
+        </div>
+      </div>
+    </div>
+</div>
+<a href="/viewperson" >view</a>

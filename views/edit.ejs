@@ -1,0 +1,48 @@
+<%- include('header.ejs') -%>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12 m-auto">
+          <div class="card card-body">
+            <h1 class="text-center mb-3">
+              <i class="fas fa-user-plus"></i> Edit Milestone
+            </h1>
+            <%-include('messages')-%>
+            <form method="post" action="/editmilestone/<%= milestone.id %>" >
+                <div class="form-row">
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Name"  name="name" value="<%= milestone.name %>" required>
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control" placeholder="units" name="units" value="<%= milestone.units %>" required>
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control" placeholder="ROI" name="rate" value="<%= milestone.rate %>"required>
+                  </div>
+                 
+                </div>
+                <br>
+                <div class="form-row">
+                 
+                  <div class="col">
+                    <input type="time" class="form-control" placeholder="starting time" name="starttime"value="<%= milestone.starttime %>" required>
+                  </div>
+                  
+                
+  
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <div class="col">
+                      <input type="time" class="form-control" placeholder="due time" name="duetime" value="<%= milestone.duetime %>"required>
+                    </div>
+                    <div class="col">
+                      <input type="number" class="form-control" placeholder="total units" name="unitstobepaid"value="<%= milestone.unitstobepaid %>" required>
+                    </div>
+                 
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary btn-block">submit</button>
+                    </div>   
+                      
+                  </div>
+                  
+  <a href="/viewmilestone" >view</a>

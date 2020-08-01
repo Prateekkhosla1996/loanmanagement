@@ -1,0 +1,52 @@
+<%- include('header.ejs') -%>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-12 m-auto">
+          <div class="card card-body">
+            <h1 class="text-center mb-3">
+              <i class="fas fa-user-plus"></i> Add Milestone
+            </h1>
+            <%-include('messages')-%>
+            <form method="post" action="/addmilestone" >
+                <div class="form-row">
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Name"  name="name" required>
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control" placeholder="units" name="units" required>
+                  </div>
+                  <div class="col">
+                    <input type="number" class="form-control" placeholder="ROI" name="rate" required>
+                  </div>
+                 
+                </div>
+                <br>
+                <div class="form-row">
+                  <div class="col">
+                    <input type="date" class="form-control" placeholder="starting date" name="startdate" required>
+                  </div>
+                  <div class="col">
+                    <input type="time" class="form-control" placeholder="starting time" name="starttime" required>
+                  </div>
+                  
+                  <div class="col">
+                    <input type="date" class="form-control" placeholder="due date"name="duedate" required>
+                  </div>   
+  
+                  </div>
+                  <br>
+                  <div class="form-row">
+                    <div class="col">
+                      <input type="time" class="form-control" placeholder="due time" name="duetime" required>
+                    </div>
+                    <div class="col">
+                      <input type="number" class="form-control" placeholder="total units" name="unitstobepaid" required>
+                    </div>
+                    
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary btn-block">submit</button>
+                    </div>   
+                      
+                  </div>
+                  
+  <a href="/viewmilestone" >view</a>

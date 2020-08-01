@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/tablemanager.js"></script>
+
+    <title>View person</title>
+</head>
+<body>
+    <%- include('header.ejs') -%>
+        <h1>registered users</h1>
+        <table class="tablemanager">
+            <thead>
+                <th>id</th>
+                <th>name</th>
+                <th>homeaddress</th>
+                <th>workaddress</th>
+                <th>work</th>
+                <th>phone1</th>
+                <th>phone2</th>
+                <th>phone3</th>
+                <th>witness1</th>
+                <th>witness2</th>
+                <th>witness3</th>
+                <th>adharcard</th>
+                <th>cheque</th>
+                <th>location</th>
+            </thead>
+            <%for(i of person_list){%>
+                    <tr>
+                        <td><%=i.id%></td>
+                        <td><%=i.name%></td>
+                        <td><%=i.homeaddress%></td>
+                        <td><%=i.workaddress%></td>
+                        <td><%=i.work%></td>
+                        <td><%=i.phone1%></td>
+                        <td><%=i.phone2%></td>
+                        <td><%=i.phone3%></td>
+                        <td><%=i.witness1%></td>
+                        <td><%=i.witness2%></td>
+                        <td><%=i.witness3%></td>
+                        <td><%=i.adharcard%></td>
+                        <td><%=i.cheque%></td>
+                        <td><%=i.location%></td>
+                        
+                    </tr>
+                <%}%>
+        </table>
+
+        <script>
+            $(".tablemanager").tablemanager({
+                firstSort: [[3,0],[2,0],[1,'asc']],
+                    // disable: ["last"],
+                    appendFilterby: true,
+                    dateFormat: [[4,"dd-mm-yyyy"]],
+                    debug: true,
+                    vocabulary: {
+                        voc_filter_by: 'Filter By',
+                        voc_type_here_filter: 'Filter...',
+                        voc_show_rows: 'Rows Per page'
+                    },
+                    pagination: true,
+                    showrows: [10,20,50,100],
+                    disableFilterBy: [1]
+            })
+        </script>
+    
+
+</body>
+</html>
+
+

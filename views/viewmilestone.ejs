@@ -1,0 +1,69 @@
+<%- include('header.ejs') -%>
+<link rel="stylesheet" href="/css/style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js" integrity="sha512-OqcrADJLG261FZjar4Z6c4CfLqd861A3yPNMb+vRQ2JwzFT49WT4lozrh3bcKxHxtDTgNiqgYbEUStzvZQRfgQ==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/tablemanager.js"></script>
+    <script src="/js/jspdf.min.js"></script>
+    <script type="text/javascript">
+        function genPDF(){
+            html2canvas(document.getElementById('viewtable')).then(function(canvas) {
+                    var img = canvas.toDataURL('image/png');
+                    var doc = new jsPDF('l','mm','a2');
+                    doc.addImage(img, 'JPEG',10,10);
+                    doc.save('test.pdf');
+                });
+    
+        }
+        </script>
+        <br>
+        &nbsp;&nbsp;<a href="javascript:genPDF()" class="btn btn-secondary menuitem">downlod pdf</a>
+<h1>registered users</h1>
+<table class="tablemanager" id="viewtable">
+    <thead>
+        <th>name</th>
+        <th>units</th>
+        <th>rate</th>
+        <th>starting date</th>
+        <th>starting time</th>
+
+        <th>due date</th>
+        <th>due time</th>
+        <th>units to recive</th>
+        <th>update Details</th>
+        
+       
+    </thead>
+    <%for(i of milestone_list){%>
+            <tr>
+                <!-- <td><%=i.id%></td> -->
+                <td><%=i.name%></td>
+                <td><%=i.units%></td>
+                <td><%=i.rate%></td>
+                <td><%=i.startdate%></td>
+                <td><%=i.starttime%></td>
+                <td><%=i.duedate%></td>
+                <td><%=i.duetime%></td>
+                <td><%=i.unitstobepaid%></td>
+                <td><a href="/milestone/edit/<%= i._id %>">edit</a></td>
+            </tr>
+        <%}%>
+</table>
+
+<script>
+    $(".tablemanager").tablemanager({
+        firstSort: [[3,0],[2,0],[1,'asc']],
+            // disable: ["last"],
+            appendFilterby: true,
+            dateFormat: [[4,"dd-mm-yyyy"]],
+            debug: true,
+            vocabulary: {
+                voc_filter_by: 'Filter By',
+                voc_type_here_filter: 'Filter...',
+                voc_show_rows: 'Rows Per page'
+            },
+            pagination: true,
+            showrows: [10,20,50,100],
+            disableFilterBy: [1]
+    })
+</script>
