@@ -10,7 +10,7 @@ const {ensureAuthenticated}=require('../config/auth');
 // const { isValidObjectId } = require('mongoose');
 // const ObjectID = require('mongodb').ObjectID;
 router.get('/',(req,res)=>{
-    res.render('welcome');
+    res.render('login');
 })
 router.get('/dashbord',ensureAuthenticated,(req,res)=>{
     res.render('dashbord',{
@@ -64,6 +64,7 @@ router.post('/addperson',pupload,(req,res)=>{
         // personphoto:req.file.filename,
         // witnessphoto:req.file.filename,
         location:req.body.location,
+        category:req.body.category
     },function(err,newPerson){
         if(err){
     
@@ -161,7 +162,8 @@ router.get('/milestone/edit/:id',(req,res)=>{
 
 router.post('/editmilestone/:id',ensureAuthenticated,function(req,res){
         
-        Milestone.findOneAndUpdate({_id:req.body._id},req.body,{ new:true },function(err,milestone){
+        Milestone.findOneAndUpdate({_id:req.body._id},req.body,
+            {  upsert: true ,new:true},function(err,milestone){
             
             if(err){
                 console.log(err);

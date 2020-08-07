@@ -43,7 +43,11 @@ const personSchema=new mongoose.Schema({
     } ,
     location:{
         type:String
-    }
+    },
+    category:{
+        type:String
+    },
+    
 });
 const person=mongoose.model('person',personSchema);
 module.exports=person;

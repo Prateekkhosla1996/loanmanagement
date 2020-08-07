@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-mongoose.connect('mongodb://localhost/taskmanagerdevelopment');
+mongoose.connect(process.env.MONGODB_URI ||'mongodb://localhost/taskmanagerdevelopment');
 
 const db=mongoose.connection;
 

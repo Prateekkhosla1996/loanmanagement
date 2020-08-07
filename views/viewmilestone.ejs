@@ -7,9 +7,10 @@
     <script src="/js/jspdf.min.js"></script>
     <script type="text/javascript">
         function genPDF(){
-            html2canvas(document.getElementById('viewtable')).then(function(canvas) {
+            html2canvas(document.getElementById('viewtable'),{scale: 2}).then(function(canvas) {
+                
                     var img = canvas.toDataURL('image/png');
-                    var doc = new jsPDF('l','mm','a2');
+                    var doc = new jsPDF('l','mm','a3');
                     doc.addImage(img, 'JPEG',10,10);
                     doc.save('test.pdf');
                 });
@@ -30,8 +31,15 @@
         <th>due date</th>
         <th>due time</th>
         <th>units to recive</th>
+        <th>date to recive units</th>
+        <th>time to recive units</th>
+        <th>payment status</th>
+        <th>remaining units</th>
+        <th>units to recover</th>
+        <th>total installments</th>
         <th>update Details</th>
         
+       
        
     </thead>
     <%for(i of milestone_list){%>
@@ -40,11 +48,17 @@
                 <td><%=i.name%></td>
                 <td><%=i.units%></td>
                 <td><%=i.rate%></td>
-                <td><%=i.startdate%></td>
+                <td><%=i.startdate.toDateString()%></td>
                 <td><%=i.starttime%></td>
-                <td><%=i.duedate%></td>
+                <td><%=i.duedate.toDateString()%></td>
                 <td><%=i.duetime%></td>
                 <td><%=i.unitstobepaid%></td>
+                <td><%=i.givendate%></td>
+                <td><%=i.giventime%></td>
+                <td><%=i.paymentstatus%></td>
+                <td><%=i.recoveramount%></td>
+                <td><%=i.amountleft%></td>
+                <td><%=i.noi%></td>
                 <td><a href="/milestone/edit/<%= i._id %>">edit</a></td>
             </tr>
         <%}%>
@@ -52,7 +66,7 @@
 
 <script>
     $(".tablemanager").tablemanager({
-        firstSort: [[3,0],[2,0],[1,'asc']],
+        firstSort: [[3,0],[2,0],[8,0],[1,'asc']],
             // disable: ["last"],
             appendFilterby: true,
             dateFormat: [[4,"dd-mm-yyyy"]],

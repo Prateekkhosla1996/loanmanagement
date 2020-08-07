@@ -9,47 +9,65 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js" integrity="sha512-01CJ9/g7e8cUmY0DFTMcUw/ikS799FHiOA0eyHsUWfOetgbx/t6oV4otQ5zXKQyIrQGTHSmRVPIgrgLcZi/WMA==" crossorigin="anonymous"></script>
     <script src="/js/tablemanager.js"></script>
     <script src="/js/jspdf.min.js"></script>
     <script type="text/javascript">
-        function genPDF(){
+   
+
+function genPDF(){
             html2canvas(document.getElementById('viewtable')).then(function(canvas) {
+               
                     var img = canvas.toDataURL('image/png');
                     var doc = new jsPDF('l','mm','a3');
                     doc.addImage(img, 'JPEG',10,10);
                     doc.save('test.pdf');
                 });
         }
-        </script>
+       
+        // </script>
         
     
 </head>
 <body>
     <%- include('header.ejs') -%>
     <br>
+   
         &nbsp;&nbsp;<a href="javascript:genPDF()" class="btn btn-secondary menuitem">downlod pdf</a>
+        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Location..">
         <h1>registered users</h1>
         <table class="tablemanager" id="viewtable">
             <thead>
                 <th>name</th>
                 <th>homeaddress</th>
-                <th>workaddress</th>
                 <th>phone1</th>
                 <th>location</th>
                 <th>units</th>
                 <th>due date</th>
                 <th>amount</th>
+                <th>date given</th>
+                <th>time given</th>
+                <th>payment status</th>
+                <th>units to recover</th>
+                <th>remaining units</th>
+                <th>total installments</th>
             </thead>
             <% results_list.map((result)=>{%>
                     <tr>
                         <td><%= result.name%></td>
                         <td><%= result.homeaddress%></td>
-                        <td><%= result.workaddress%></td>
                         <td><%= result.phone1%></td>
                         <td><%= result.location%></td>
                         <td><%= result.user_details.units%></td>
                         <td><%= result.user_details.duedate%></td>
                         <td><%= result.user_details.unitstobepaid%></td>
+                        <td><%= result.user_details.givendate%></td>
+                        <td><%= result.user_details.giventime%></td>
+                        <td><%= result.user_details.paymentstatus%></td>
+                        <td><%= result.user_details.recoveramount%></td>
+                        <td><%= result.user_details.amountleft%></td>
+                        <td><%= result.user_details.noi%></td>
                     </tr>
                 <%})%>
         </table>
@@ -68,10 +86,32 @@
                     },
                     pagination: true,
                     showrows: [10,20,50,100],
-                    disableFilterBy: [1]
+                    // disableFilterBy: [1]
             })
         </script>
-    
+    <script>
+        function myFunction() {
+          // Declare variables
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("viewtable");
+          tr = table.getElementsByTagName("tr");
+        
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+        </script>
 
 </body>
 </html>

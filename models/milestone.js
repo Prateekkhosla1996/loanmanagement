@@ -33,10 +33,25 @@ const milestoneSchema=new mongoose.Schema({
         type:Number,
         
     },
-    time:{
+    givendate:{
+        type:Date
+    },
+    giventime:{
         type:String
     }
     ,
+    paymentstatus:{
+        type:String
+    },
+    recoveramount:{
+        type:Number
+    },
+    amountleft:{
+        type:Number
+    },
+    noi:{
+        type:Number
+    }
     
 });
 const milestone=mongoose.model('milestone',milestoneSchema);

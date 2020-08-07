@@ -15,7 +15,6 @@
         <h1>registered users</h1>
         <table class="tablemanager">
             <thead>
-                <th>id</th>
                 <th>name</th>
                 <th>homeaddress</th>
                 <th>workaddress</th>
@@ -29,10 +28,10 @@
                 <th>adharcard</th>
                 <th>cheque</th>
                 <th>location</th>
+                <th>category</th>
             </thead>
             <%for(i of person_list){%>
                     <tr>
-                        <td><%=i.id%></td>
                         <td><%=i.name%></td>
                         <td><%=i.homeaddress%></td>
                         <td><%=i.workaddress%></td>
@@ -46,7 +45,7 @@
                         <td><%=i.adharcard%></td>
                         <td><%=i.cheque%></td>
                         <td><%=i.location%></td>
-                        
+                        <td><%=i.category%></td>
                     </tr>
                 <%}%>
         </table>
